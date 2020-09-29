@@ -20,7 +20,7 @@ public class ShortenUrl {
 
     public void setShort_url(String short_url) {
         this.short_url = short_url;
-    }
+   }
 
     public String getCustome_url() {
         return custome_url;
