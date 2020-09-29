@@ -24,7 +24,12 @@ public class UrlShorterRestController {
     @RequestMapping(value="/shortenurl", method=RequestMethod.POST)
     public ResponseEntity<Object> getShortenUrl(@RequestBody ShortenUrl shortenUrl) throws MalformedURLException {
         String randomChar;
+        if(shortenUrl.getCustome_url().equals("")){
             randomChar = getRandomChars();
+            setShortUrl(randomChar, shortenUrl);
+            return new ResponseEntity<Object>(shortenUrl, HttpStatus.OK);
+        }
+        randomChar = shortenUrl.getCustome_url();
         setShortUrl(randomChar, shortenUrl);
         return new ResponseEntity<Object>(shortenUrl, HttpStatus.OK);
     }
