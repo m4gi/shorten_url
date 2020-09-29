@@ -21,10 +21,10 @@ public class UrlShorterRestController {
 
     private Map<String, ShortenUrl> shortenUrlList = new HashMap<>();
 
-    @RequestMapping(value="/shortenurl", method=RequestMethod.POST)
+    @RequestMapping(value = "/shortenurl", method = RequestMethod.POST)
     public ResponseEntity<Object> getShortenUrl(@RequestBody ShortenUrl shortenUrl) throws MalformedURLException {
         String randomChar;
-        if(shortenUrl.getCustome_url().equals("")){
+        if (shortenUrl.getCustome_url().equals("")) {
             randomChar = getRandomChars();
             setShortUrl(randomChar, shortenUrl);
             return new ResponseEntity<Object>(shortenUrl, HttpStatus.OK);
@@ -34,13 +34,13 @@ public class UrlShorterRestController {
         return new ResponseEntity<Object>(shortenUrl, HttpStatus.OK);
     }
 
-    @RequestMapping(value="/s/{randomstring}", method=RequestMethod.GET)
+    @RequestMapping(value = "/s/{randomstring}", method = RequestMethod.GET)
     public void getFullUrl(HttpServletResponse response, @PathVariable("randomstring") String randomString) throws IOException {
         response.sendRedirect(shortenUrlList.get(randomString).getFull_url());
     }
 
     private void setShortUrl(String randomChar, ShortenUrl shortenUrl) throws MalformedURLException {
-        shortenUrl.setShort_url("http://localhost:8080/s/"+randomChar);
+        shortenUrl.setShort_url("http://localhost:8080/s/" + randomChar);
         shortenUrlList.put(randomChar, shortenUrl);
     }
 

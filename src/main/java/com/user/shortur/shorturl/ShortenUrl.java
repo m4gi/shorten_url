@@ -5,6 +5,7 @@ public class ShortenUrl {
     private String full_url;
     private String short_url;
     private String custome_url;
+
     public String getFull_url() {
         return full_url;
     }
